@@ -56,8 +56,14 @@ footer {
   box-shadow: 0px -3px 23px 10px rgba(0, 0, 0, 0.59);
 }
 
-footer p {
+footer p, footer a {
   font-size: 1.5rem;
   color: var(--light-aqua);
 }
+
+footer a:hover, footer a:after, footer a:focus {
+  text-decoration: none;
+  color: var(--light-aqua);
+}
+
 

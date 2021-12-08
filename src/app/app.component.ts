@@ -41,6 +41,8 @@ export class AppComponent implements OnInit {
   }
 
   addItem(textTask: string): void {
+    let input = document.getElementsByTagName("input")[0];
+    input.value = "";
     if (textTask === "null" || textTask.trim() === "") {
       return;
     } else {
@@ -58,6 +60,9 @@ export class AppComponent implements OnInit {
     return false;
   }
 
+  toDoBtn(task: Task): void {
+    task.done = !task.done;
+  }
 
 }
 

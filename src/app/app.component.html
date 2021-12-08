@@ -1,6 +1,6 @@
 <div class="input-container">
   <div class="task-input">
-    <input id="input-task" [(ngModel)]="text" placeholder="Some task"/>
+    <input id="input-task" [(ngModel)]="text" placeholder="Some task" autocomplete="off"/>
   </div>
   <div class="todo-btn">
     <button class="btn btn-default" (click)="addItem(text)">ToDo</button>
@@ -10,9 +10,9 @@
   <div class="tasks-container" *ngFor="let task of tasks">
     <div class="task-block" *ngIf="!isDone(task)">
       <span>{{task.taskName}}</span>
-      <span id="task-check" (click)="task.done = !task.done">
+      <button id="task-check" (click)="toDoBtn(task)">
         Done
-      </span>
+      </button>
     </div>
   </div>
 </div>
