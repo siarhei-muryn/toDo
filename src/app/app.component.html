@@ -9,12 +9,10 @@
 <div class="task-table">
   <div class="tasks-container" *ngFor="let task of tasks">
     <div class="task-block" *ngIf="!isDone(task)">
-      <div class="task-info">
-        <label for="task-check">
-          <span>{{task.taskName}}</span>
-        </label>
-        <input id="task-check" type="checkbox" [(ngModel)]="task.done">
-      </div>
+      <span>{{task.taskName}}</span>
+      <span id="task-check" (click)="task.done = !task.done">
+        Done
+      </span>
     </div>
   </div>
 </div>

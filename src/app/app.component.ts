@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {style} from "@angular/animations";
 
 class Task {
@@ -19,23 +19,46 @@ class Task {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   text: string = "";
-
   tasks: Task[] = [];
+
+  ngOnInit(): void {
+    this.fromStorage();
+  }
+
+  fromStorage(): void {
+    for (let key in localStorage) {
+      if (!localStorage.hasOwnProperty(key)) {
+        continue;
+      }
+      let taskName = localStorage.getItem(key);
+      if (taskName !== null) {
+        let task = new Task(taskName, +key);
+        this.tasks.push(task);
+      }
+    }
+  }
 
   addItem(textTask: string): void {
     if (textTask === "null" || textTask.trim() === "") {
       return;
-    } else this.tasks.push(new Task(textTask, this.tasks.length));
-    console.log(this.tasks);
+    } else {
+      let task = new Task(textTask, localStorage.length)
+      this.tasks.push(task);
+      localStorage.setItem(task.id.toString(), task.taskName);
+    }
   }
 
-  isDone(task: Task) {
+  isDone(task: Task): boolean {
     if (task.done) {
+      localStorage.removeItem(task.id.toString());
       return true;
-    } else return false;
+    }
+    return false;
   }
+
+
 }
 
 
