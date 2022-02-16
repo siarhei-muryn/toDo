@@ -1,5 +1,4 @@
-import {Component, OnInit} from '@angular/core';
-import {style} from "@angular/animations";
+import {Component, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 
 class Task {
   taskName: string;
@@ -11,7 +10,6 @@ class Task {
     this.done = false;
     this.id = id;
   }
-
 }
 
 @Component({
@@ -19,15 +17,19 @@ class Task {
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnChanges {
   text: string = "";
   tasks: Task[] = [];
 
   ngOnInit(): void {
-    this.fromStorage();
+    this.getTasks();
   }
 
-  fromStorage(): void {
+  ngOnChanges(changes: SimpleChanges): void {
+
+  }
+
+  getTasks(): void {
     for (let key in localStorage) {
       if (!localStorage.hasOwnProperty(key)) {
         continue;
@@ -40,6 +42,7 @@ export class AppComponent implements OnInit {
     }
   }
 
+
   addItem(textTask: string): void {
     let input = document.getElementsByTagName("input")[0];
     input.value = "";
@@ -49,6 +52,8 @@ export class AppComponent implements OnInit {
       let task = new Task(textTask, localStorage.length)
       this.tasks.push(task);
       localStorage.setItem(task.id.toString(), task.taskName);
+      console.log(localStorage);
+      console.log(this.tasks);
     }
   }
 

@@ -1,6 +1,17 @@
 # FirstTODO
+___
+An application where you can leave notes and make a plan for the day.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
+![](view.gif)
+
+
+###### This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.0.4.
+___
+
+
+
+
+
 
 ## Development server
 
